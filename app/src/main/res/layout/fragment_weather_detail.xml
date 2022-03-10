@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.faskn.app.weatherapp.ui.weather_detail.WeatherDetailViewModel" />
+    </data>
+
+    <RelativeLayout
+        android:id="@+id/rootView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:fitsSystemWindows="true"
+        tools:context=".ui.weather_detail.WeatherDetailFragment">
+
+        <androidx.coordinatorlayout.widget.CoordinatorLayout
+            android:id="@+id/coordinatorLayout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="24dp">
+
+            <com.google.android.material.floatingactionbutton.FloatingActionButton
+                android:id="@+id/fabClose"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:elevation="8dp"
+                android:padding="0dp"
+                android:scaleType="fitXY"
+                app:borderWidth="0dp"
+                app:layout_anchor="@id/cardView"
+                app:layout_anchorGravity="center_horizontal|top"
+                app:srcCompat="@drawable/ic_close"
+                app:tint="@null"
+                app:useCompatPadding="true"
+                tools:ignore="ContentDescription" />
+
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/cardView"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="48dp"
+                android:layout_marginBottom="-32dp"
+                android:backgroundTint="@{viewModel.weatherItem.getColor()}"
+                android:transitionName="@{String.format(@string/cardView, viewModel.weatherItem.getDay())}"
+                app:cardCornerRadius="24dp"
+                tools:backgroundTint="@color/colorPrimary">
+
+                <androidx.core.widget.NestedScrollView
+                    android:id="@+id/scrollView"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="@android:color/transparent">
+
+                        <TextView
+                            android:id="@+id/textViewDayOfWeek"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerHorizontal="true"
+                            android:layout_marginTop="32dp"
+                            android:text="@{viewModel.weatherItem.getDay()}"
+                            android:textColor="@color/white"
+                            android:textSize="48sp"
+                            android:textStyle="bold"
+                            android:transitionName="@{String.format(@string/dayOfWeek, viewModel.weatherItem.getDay())}" />
+
+                        <ImageView
+                            android:id="@+id/imageViewForecastIcon"
+                            android:layout_width="160dp"
+                            android:layout_height="160dp"
+                            android:layout_below="@id/textViewDayOfWeek"
+                            android:layout_centerHorizontal="true"
+                            android:layout_marginTop="12dp"
+                            android:layout_marginBottom="12dp"
+                            android:transitionName="@{String.format(@string/forecastIcon, viewModel.weatherItem.getDay())}"
+                            app:setWeatherIcon="@{viewModel.weatherItem.getWeatherItem().icon}"
+                            tools:src="@drawable/a10d_svg" />
+
+                        <TextView
+                            android:id="@+id/textViewTemp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@id/imageViewForecastIcon"
+                            android:layout_centerHorizontal="true"
+                            android:text="@{viewModel.weatherItem.main.getTempString()}"
+                            android:textColor="@color/white"
+                            android:textSize="60sp"
+                            android:textStyle="bold"
+                            android:transitionName="@{String.format(@string/temp, viewModel.weatherItem.getDay())}" />
+
+                        <LinearLayout
+                            android:id="@+id/linearLayoutTempMaxMin"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@id/textViewTemp"
+                            android:layout_centerHorizontal="true"
+                            android:layout_marginTop="8dp"
+                            android:orientation="horizontal"
+                            android:transitionName="@{String.format(@string/tempMaxMin, viewModel.weatherItem.getDay())}">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginEnd="12dp"
+                                android:text="@{viewModel.weatherItem.main.getTempMinString()}"
+                                android:textColor="@color/whiteWithHalfOpacity"
+                                android:textSize="30sp" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="12dp"
+                                android:text="@{viewModel.weatherItem.main.getTempMaxString()}"
+                                android:textColor="@color/white"
+                                android:textSize="30sp" />
+                        </LinearLayout>
+
+                        <com.google.android.material.card.MaterialCardView
+                            android:id="@+id/cardViewHourOfDayContainer"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@id/linearLayoutTempMaxMin"
+                            android:layout_centerHorizontal="true"
+                            android:layout_marginStart="24dp"
+                            android:layout_marginTop="24dp"
+                            android:layout_marginEnd="24dp"
+                            android:layout_marginBottom="64dp"
+                            app:cardCornerRadius="24dp">
+
+                            <androidx.recyclerview.widget.RecyclerView
+                                android:id="@+id/recyclerViewHourOfDay"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_margin="16dp"
+                                android:orientation="horizontal"
+                                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                                tools:listitem="@layout/item_weather_hour_of_day" />
+                        </com.google.android.material.card.MaterialCardView>
+
+                    </RelativeLayout>
+                </androidx.core.widget.NestedScrollView>
+            </com.google.android.material.card.MaterialCardView>
+        </androidx.coordinatorlayout.widget.CoordinatorLayout>
+    </RelativeLayout>
+</layout>
