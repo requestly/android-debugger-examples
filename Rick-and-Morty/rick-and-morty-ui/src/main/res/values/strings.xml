@@ -1,0 +1,19 @@
+<resources>
+    <string name="app_name">Rick and Morty</string>
+    <string name="menu_home">Home</string>
+    <string name="menu_favorites">Favorites</string>
+    <string name="menu_settings">Settings</string>
+    <string name="app_exit_label">Press BACK again to exit</string>
+    <string name="character_list_label_last_known_location">"Last known location: "</string>
+    <string name="theme_label">Theme</string>
+    <string name="fragment_characters_title_label">Characters</string>
+    <string name="fragment_character_detail_title_label">Character Detail</string>
+    <string name="fragment_settings_title_label">Settings</string>
+    <string name="bookmark_error">Something went wrong, please try again.</string>
+    <string name="bookmark_success">Character bookmarked successfully</string>
+    <string name="un_bookmark_success">Character bookmarked removed successfully</string>
+    <string name="character_gender_label">Gender:</string>
+    <string name="character_species_label">Species:</string>
+    <string name="character_location_label">Location:</string>
+    <string name="character_status_label">Status:</string>
+</resources>

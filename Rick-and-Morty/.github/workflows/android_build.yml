@@ -1,0 +1,28 @@
+name: Android Build
+
+on:
+  pull_request:
+    branches:
+      - master
+  push:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Set Up JDK 
+        uses: actions/setup-java@v1
+        with:
+          java-version: 11
+
+      - name: Run KtLint
+        run: ./gradlew ktlintCheck
+
+      - name: Run Tests
+        run: ./gradlew testDebugUnitTest --stacktrace
+
+      - name: Build Project
+        run: ./gradlew assembleDebug
