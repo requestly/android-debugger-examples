@@ -1,0 +1,107 @@
+plugins {
+    id 'com.android.application'
+    id 'kotlin-android'
+    id 'kotlin-parcelize'
+    id 'kotlin-kapt'
+    id 'dagger.hilt.android.plugin'
+    id 'androidx.navigation.safeargs.kotlin'
+}
+
+def keystorePropertiesFile = rootProject.file("keystore.properties")
+def keystoreProperties = new Properties()
+
+keystoreProperties.load(new FileInputStream(keystorePropertiesFile))
+
+android {
+    compileSdkVersion 31
+    buildToolsVersion "31.0.0"
+
+    defaultConfig {
+        applicationId "com.cosmos.candle"
+        minSdkVersion 23
+        targetSdkVersion 31
+        versionCode 6
+        versionName "0.1.5"
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+
+    signingConfigs {
+        release {
+            keyAlias keystoreProperties['keyAlias']
+            keyPassword keystoreProperties['keyPassword']
+            storeFile file(keystoreProperties['storeFile'])
+            storePassword keystoreProperties['storePassword']
+        }
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled true
+            shrinkResources true
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.release
+        }
+    }
+
+    buildFeatures {
+        viewBinding true
+        dataBinding true
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    kotlinOptions {
+        jvmTarget = '1.8'
+    }
+}
+
+dependencies {
+    implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin"
+
+    implementation "com.google.dagger:hilt-android:$hiltGradlePlugin"
+    kapt "com.google.dagger:hilt-android-compiler:$hiltGradlePlugin"
+
+    implementation "androidx.core:core-ktx:$core"
+    implementation "androidx.appcompat:appcompat:$appCompat"
+    implementation "androidx.constraintlayout:constraintlayout:$constraintLayout"
+    implementation "androidx.fragment:fragment-ktx:$fragment"
+    implementation "androidx.lifecycle:lifecycle-livedata-ktx:$lifecycle"
+    implementation "androidx.preference:preference-ktx:$preference"
+
+    implementation "androidx.navigation:navigation-fragment-ktx:$navigation"
+    implementation "androidx.navigation:navigation-ui-ktx:$navigation"
+
+    implementation "androidx.room:room-runtime:$room"
+    kapt "androidx.room:room-compiler:$room"
+    implementation "androidx.room:room-ktx:$room"
+
+    implementation "androidx.datastore:datastore-preferences:$datastore"
+
+    implementation "androidx.core:core-splashscreen:$splashscreen"
+
+    implementation "com.google.android.material:material:$material"
+
+    implementation "com.squareup.retrofit2:retrofit:$retrofit"
+    implementation "com.squareup.retrofit2:converter-moshi:$retrofit"
+
+    implementation "com.squareup.moshi:moshi:$moshi"
+    kapt "com.squareup.moshi:moshi-kotlin-codegen:$moshi"
+    implementation "com.squareup.moshi:moshi-adapters:$moshi"
+
+    implementation "io.coil-kt:coil:$coil"
+
+    implementation "com.robinhood.ticker:ticker:$ticker"
+
+    implementation "com.github.PhilJay:MPAndroidChart:$mpAndroidChart"
+
+    testImplementation "junit:junit:$jUnit"
+
+    androidTestImplementation "androidx.test:runner:$testRunner"
+    androidTestImplementation "androidx.test.ext:junit:$test"
+    androidTestImplementation "androidx.test.espresso:espresso-core:$espresso"
+    debugImplementation "io.requestly.rqinterceptor:library:1.0.2"
+    releaseImplementation "io.requestly.rqinterceptor:library-no-op:1.0.2"
+}

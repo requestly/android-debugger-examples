@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:fitsSystemWindows="true">
+
+    <include
+        android:id="@+id/include_appbar"
+        layout="@layout/include_main_appbar"/>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/list_quotes"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/include_appbar"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:transitionGroup="true"
+        android:overScrollMode="never"/>
+
+    <com.cosmos.candelabra.ui.common.InfoBarView
+        android:id="@+id/info_retry"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/include_appbar"
+        android:layout_marginTop="@dimen/info_bar_margin_top"
+        style="@style/Widget.InfoBar"
+        app:textMessage="@string/network_retry_message"
+        app:textAction="@string/network_retry_action"
+        android:visibility="gone"
+        tools:visibility="visible"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,0 +1,209 @@
+apply plugin: 'com.android.application'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-kapt'
+apply plugin: 'dagger.hilt.android.plugin'
+
+repositories {
+    maven { url "https://jitpack.io" }
+    mavenCentral()
+}
+
+
+android {
+    compileSdkVersion rootProject.compileSdkVersion
+
+    def appVersionCode = 659
+    // именование версий:
+    // первое число не трогаем никогда. только если весь клиент переписали, но тогда это другой репозиторий
+    // второе число только при серьезных изменениях, затрагивающих интерфейс или архитектуру
+    // третье число меняется каждый релиз
+    // 4 число - ТОЛЬКО фиксы в релизе.
+    // новая ветка release - туда попадают только полный новый релиз и только его фиксы
+    // после фикса в релизе мержим в мастер.
+    // мастер - рабочая ветка для следуюшего релиза
+
+    def appVersionName = "3.6"
+
+    defaultConfig {
+        applicationId 'org.softeg.slartus.forpdaplus'
+        minSdkVersion rootProject.minSdk
+        targetSdkVersion rootProject.targetSdkVersion
+        versionCode appVersionCode
+        versionName appVersionName
+        vectorDrawables.useSupportLibrary = true
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        multiDexEnabled true
+    }
+    dexOptions {
+        dexInProcess = true
+        preDexLibraries = true
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+    signingConfigs {
+        release {
+            def keystoreProperties = new Properties()
+
+            if (rootProject.file("keystore.properties").exists()) {
+                keystoreProperties.load(new FileInputStream(rootProject.file("keystore.properties")))
+                storeFile file("keystore.jks")
+                storePassword "$keystoreProperties.RELEASE_STORE_PASSWORD"
+                keyAlias "$keystoreProperties.RELEASE_KEY_ALIAS"
+                keyPassword "$keystoreProperties.RELEASE_KEY_PASSWORD"
+            } else {
+                storeFile file("keystore.jks")
+                storePassword System.getenv('RELEASE_STORE_PASSWORD')
+                keyAlias System.getenv('RELEASE_KEY_ALIAS')
+                keyPassword System.getenv('RELEASE_KEY_PASSWORD')
+            }
+        }
+    }
+    buildTypes {
+        release {
+            signingConfig signingConfigs.release
+        }
+    }
+    flavorDimensions "wtf"
+    productFlavors {
+        def defaultSigningVariable = signingConfigs.release
+        rel {
+            applicationId 'org.softeg.slartus.forpdaplus'
+            versionCode appVersionCode
+            versionName appVersionName
+            signingConfig defaultSigningVariable
+            dimension "wtf"
+        }
+        beta {
+            applicationId 'org.softeg.slartus.forpdaplus.beta'
+            versionCode 668// у беты свой номер, чтобы не инкрементить релизный
+            versionName "${appVersionName}beta" //beta - С МАЛЕНЬКОЙ БУКВЫ ПЛЗ.))
+            signingConfig defaultSigningVariable
+            dimension "wtf"
+        }
+    }
+
+    android.applicationVariants.all { variant ->
+        variant.outputs.all {
+            def fileNaming = "ForPDA"
+            def vCode = variant.versionCode
+            def flavor = variant.productFlavors[0]
+            if (variant.buildType.name == "debug")
+                outputFileName = "app-debug.apk"
+            else if (flavor.name == "beta")
+                outputFileName = "${fileNaming}_${appVersionName}-beta_c${vCode}.apk"
+            else
+                outputFileName = "${fileNaming}_${appVersionName}-${variant.buildType.name}.apk"
+        }
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    lintOptions {
+        disable 'RestrictedApi'
+        checkReleaseBuilds false
+    }
+    packagingOptions {
+        exclude 'META-INF/DEPENDENCIES.txt'
+        exclude 'META-INF/LICENSE.txt'
+        exclude 'META-INF/NOTICE.txt'
+        exclude 'META-INF/NOTICE'
+        exclude 'META-INF/LICENSE'
+        exclude 'META-INF/DEPENDENCIES'
+        exclude 'META-INF/notice.txt'
+        exclude 'META-INF/license.txt'
+        exclude 'META-INF/dependencies.txt'
+    }
+    testOptions {
+        unitTests.returnDefaultValues = true
+    }
+    buildFeatures {
+        viewBinding true
+    }
+}
+dependencies {
+    implementation project(':core')
+    implementation project(':core-res')
+    api project(':forpdacommon')
+    api project(':forpdanotifyservice')
+    api project(':4pdasources')
+    api project(':hosthelper')
+    implementation project(":core-lib")
+    implementation project(":core-db")
+    implementation project(":domain-forum")
+    implementation project(":domain-qms")
+    implementation project(":domain-user-profile")
+    implementation project(":feature-forum")
+    implementation project(":feature-qms-contact-threads")
+    implementation project(":feature-qms-contacts")
+    implementation project(":feature-qms-new-thread")
+
+    implementation "androidx.appcompat:appcompat:$rootProject.appcompat"
+    implementation 'androidx.cardview:cardview:1.0.0'
+    implementation 'androidx.constraintlayout:constraintlayout:2.1.2'
+
+    implementation "androidx.core:core-ktx:$rootProject.coreCtx"
+    implementation "androidx.lifecycle:lifecycle-viewmodel-savedstate:$rootProject.lifecycle"
+    implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:$rootProject.lifecycle"
+    implementation "androidx.lifecycle:lifecycle-runtime-ktx:$rootProject.lifecycle"
+    implementation 'androidx.multidex:multidex:2.0.1'
+    implementation 'androidx.navigation:navigation-fragment-ktx:2.3.5'
+    implementation 'androidx.navigation:navigation-ui-ktx:2.3.5'
+    implementation "androidx.preference:preference-ktx:1.1.1"
+    implementation "androidx.recyclerview:recyclerview:$rootProject.recyclerview"
+
+    implementation "com.google.android.material:material:$rootProject.material"
+//    api "com.android.support:preference-v7:$rootProject.supportLibraryVersion"
+
+    api 'com.nostra13.universalimageloader:universal-image-loader:1.9.5'
+    api 'com.readystatesoftware.sqliteasset:sqliteassethelper:2.0.1'
+    api 'com.github.chrisbanes.photoview:library:1.2.4'
+    api 'com.nineoldandroids:library:2.4.0'
+    api 'com.afollestad.material-dialogs:core:0.9.6.0'
+    api 'de.hdodenhof:circleimageview:3.1.0'
+    api 'com.dmitriy-tarasov:android-intents:1.1.0'
+    api 'com.squareup.picasso:picasso:2.71828'
+
+    def acraVersion = '5.8.4'
+    implementation "ch.acra:acra-http:$acraVersion"
+    implementation "ch.acra:acra-notification:$acraVersion"
+    implementation "ch.acra:acra-toast:$acraVersion"
+    implementation "ch.acra:acra-limiter:$acraVersion"
+    kapt('com.google.auto.service:auto-service:1.0.1')
+    compileOnly('com.google.auto.service:auto-service-annotations:1.0.1')
+
+    implementation "com.google.code.gson:gson:$rootProject.gson"
+    api "com.squareup.okhttp3:okhttp:$rootProject.okhttp3"
+    api 'com.github.armcha:Vertical-Intro:2.0.0'
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:$rootProject.coroutines"
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:$rootProject.coroutines"
+    implementation 'io.paperdb:paperdb:2.7.1'
+    implementation "io.reactivex.rxjava2:rxandroid:$rootProject.rxjava2"
+
+    implementation 'com.github.pwittchen:reactivenetwork-rx2:3.0.8'
+    implementation 'com.karumi:dexter:6.2.2'
+
+    implementation "com.google.dagger:hilt-android:$rootProject.hilt"
+    kapt "com.google.dagger:hilt-compiler:$rootProject.hilt"
+
+    implementation("io.coil-kt:coil:$rootProject.coil")
+
+    implementation "com.jakewharton.timber:timber:$rootProject.timber"
+
+    // implementation 'com.gu.android:toolargetool:0.3.0' логирование saveinstancestate
+    testImplementation 'junit:junit:4.13.2'
+    implementation 'com.evernote:android-job:1.4.2'
+    androidTestImplementation 'androidx.test:runner:1.4.0'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
+    // leak-canary https://square.github.io/leakcanary/fundamentals-how-leakcanary-works/
+    debugImplementation 'com.squareup.leakcanary:leakcanary-android:2.7'
+    debugImplementation "io.requestly.rqinterceptor:library:1.0.2"
+    releaseImplementation "io.requestly.rqinterceptor:library-no-op:1.0.2"
+}

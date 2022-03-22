@@ -1,0 +1,6 @@
+Added
+- Splashscreen
+- Spanish translation (thanks to @sguinetti)
+
+Fixed
+- Search (again)

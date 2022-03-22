@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <dimen name="card_elevation">8dp</dimen>
+    <dimen name="card_radius">16dp</dimen>
+
+    <dimen name="fab_elevation">6dp</dimen>
+    <dimen name="fab_margin">16dp</dimen>
+
+    <dimen name="quote_overview_card_height">135dp</dimen>
+    <dimen name="quote_overview_card_margin_horizontal">12dp</dimen>
+    <dimen name="quote_overview_card_margin_vertical">8dp</dimen>
+    <dimen name="quote_overview_card_radius">16dp</dimen>
+    <dimen name="quote_overview_card_padding">8dp</dimen>
+
+    <dimen name="quote_watchlist_card_height">75dp</dimen>
+    <dimen name="quote_watchlist_card_margin_horizontal">16dp</dimen>
+    <dimen name="quote_watchlist_card_margin_vertical">8dp</dimen>
+    <dimen name="quote_watchlist_card_padding">16dp</dimen>
+    <dimen name="quote_watchlist_chart_width">150dp</dimen>
+
+    <dimen name="search_quote_margin_horizontal">12dp</dimen>
+    <dimen name="search_quote_margin_vertical">8dp</dimen>
+    <dimen name="search_quote_padding">16dp</dimen>
+    <dimen name="search_quote_padding_end">4dp</dimen>
+
+    <dimen name="search_bar_margin_vertical">8dp</dimen>
+    <dimen name="search_bar_radius">8dp</dimen>
+    <dimen name="search_bar_action_margin">12dp</dimen>
+
+    <dimen name="chart_marker_padding">8dp</dimen>
+
+    <dimen name="quote_details_card_margin">16dp</dimen>
+    <dimen name="quote_details_card_padding">16dp</dimen>
+    <dimen name="quote_details_peek_height">275dp</dimen>
+    <dimen name="quote_details_chart_height">200dp</dimen>
+    <dimen name="quote_details_margin">8dp</dimen>
+    <dimen name="quote_details_padding">8dp</dimen>
+
+    <dimen name="toolbar_action_margin">16dp</dimen>
+
+    <dimen name="preferences_section_padding">8dp</dimen>
+    <dimen name="preferences_item_padding">16dp</dimen>
+
+    <dimen name="about_app_icon_size">72dp</dimen>
+
+    <dimen name="about_credit_padding">12dp</dimen>
+
+    <dimen name="info_bar_margin_top">8dp</dimen>
+</resources>

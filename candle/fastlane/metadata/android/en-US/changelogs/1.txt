@@ -1,0 +1,5 @@
+### Added
+- Overview
+- Watchlist
+- Search feature
+- Light/Dark theme

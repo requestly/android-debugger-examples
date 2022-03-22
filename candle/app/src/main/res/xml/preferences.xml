@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <PreferenceCategory
+        app:key="ui_category"
+        app:title="@string/preferences_section_ui">
+
+        <Preference
+            app:key="night_mode"
+            app:title="@string/preference_night_mode"
+            app:persistent="false"/>
+
+    </PreferenceCategory>
+
+    <PreferenceCategory
+        app:key="misc_category"
+        app:title="@string/preferences_section_misc">
+
+        <Preference
+            app:key="about"
+            app:title="@string/preference_about"
+            app:persistent="false"/>
+
+    </PreferenceCategory>
+
+</PreferenceScreen>

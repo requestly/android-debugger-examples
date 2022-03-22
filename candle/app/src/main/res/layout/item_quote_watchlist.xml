@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="chart"
+            type="com.cosmos.candelabra.data.model.ChartWithQuote" />
+    </data>
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/layout_root"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/quote_watchlist_card_height"
+        android:layout_marginHorizontal="@dimen/quote_watchlist_card_margin_horizontal"
+        android:layout_marginVertical="@dimen/quote_watchlist_card_margin_vertical"
+        android:transitionName="@{@string/quote_card_transition_name(chart.quote.symbol)}">
+
+        <com.google.android.material.imageview.ShapeableImageView
+            android:id="@+id/background"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scaleType="centerCrop"
+            app:shapeAppearanceOverlay="@style/ShapeAppearance.Card.Image.Background"
+            tools:src="@drawable/quote_card_background"/>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:paddingHorizontal="@dimen/quote_watchlist_card_padding">
+
+            <TextView
+                android:id="@+id/symbol"
+                style="@style/Widget.Quote.Watchlist.Title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toTopOf="@id/name"
+                app:layout_constraintVertical_chainStyle="packed"
+                android:text="@{chart.chart.symbol}"
+                tools:text="AAPL"/>
+
+            <TextView
+                android:id="@+id/name"
+                style="@style/Widget.Quote.Watchlist.Subtitle"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                app:layout_constraintStart_toStartOf="@id/symbol"
+                app:layout_constraintEnd_toStartOf="@id/chart_prices"
+                app:layout_constraintTop_toBottomOf="@id/symbol"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintHorizontal_bias="0"
+                android:text="@{chart.quote.name}"
+                tools:text="Apple Inc."/>
+
+            <com.github.mikephil.charting.charts.LineChart
+                android:id="@+id/chart_prices"
+                android:layout_width="@dimen/quote_watchlist_chart_width"
+                android:layout_height="match_parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"/>
+
+            <TextView
+                android:id="@+id/no_data"
+                style="@style/Widget.Quote.Watchlist.NoData"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintStart_toStartOf="@id/chart_prices"
+                app:layout_constraintEnd_toEndOf="@id/chart_prices"
+                app:layout_constraintTop_toTopOf="@id/chart_prices"
+                app:layout_constraintBottom_toBottomOf="@id/chart_prices"
+                android:text="@string/chart_no_data"/>
+
+            <com.robinhood.ticker.TickerView
+                android:id="@+id/price"
+                style="@style/Widget.Quote.Watchlist.Price"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toTopOf="@id/previous_close"
+                app:layout_constraintStart_toEndOf="@id/chart_prices"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintVertical_chainStyle="packed"
+                android:gravity="end"
+                tools:text="$132.99"/>
+
+            <TextView
+                android:id="@+id/previous_close"
+                style="@style/Widget.Quote.Watchlist.Close"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toBottomOf="@id/price"
+                app:layout_constraintBottom_toTopOf="@id/change_percent"
+                app:layout_constraintStart_toEndOf="@id/chart_prices"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:gravity="end"
+                tools:text="$130.30"/>
+
+            <com.robinhood.ticker.TickerView
+                android:id="@+id/change_percent"
+                style="@style/Widget.Quote.Watchlist.Change"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toBottomOf="@id/previous_close"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toEndOf="@id/chart_prices"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:gravity="end"
+                tools:text="+2.02%"
+                tools:textColor="@color/change_positive"/>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </com.google.android.material.card.MaterialCardView>
+
+</layout>

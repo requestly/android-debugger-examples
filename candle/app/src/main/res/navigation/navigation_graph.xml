@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/navigation_graph"
+    app:startDestination="@id/overview">
+
+    <fragment
+        android:id="@+id/overview"
+        android:name="com.cosmos.candelabra.ui.overview.OverviewFragment"
+        android:label="OverviewFragment"
+        tools:layout="@layout/fragment_overview"/>
+
+    <fragment
+        android:id="@+id/watchlist"
+        android:name="com.cosmos.candelabra.ui.watchlist.WatchlistFragment"
+        android:label="WatchlistFragment"
+        tools:layout="@layout/fragment_watchlist"/>
+
+    <fragment
+        android:id="@+id/preferences"
+        android:name="com.cosmos.candelabra.ui.preferences.PreferencesFragment"
+        android:label="PreferencesFragment">
+
+        <action
+            android:id="@+id/openAbout"
+            app:destination="@id/about"/>
+    </fragment>
+
+    <fragment
+        android:id="@+id/about"
+        android:name="com.cosmos.candelabra.ui.about.AboutFragment"
+        android:label="AboutFragment"
+        tools:layout="@layout/fragment_about"/>
+
+    <fragment
+        android:id="@+id/search"
+        android:name="com.cosmos.candelabra.ui.search.SearchFragment"
+        android:label="SearchFragment"
+        tools:layout="@layout/fragment_search"/>
+
+    <fragment
+        android:id="@+id/quote_details"
+        android:name="com.cosmos.candelabra.ui.quotedetails.QuoteDetailsFragment"
+        android:label="QuoteDetailsFragment"
+        tools:layout="@layout/fragment_quote_details">
+        <argument
+            android:name="symbol"
+            app:argType="string" />
+        <argument
+            android:name="name"
+            app:argType="string" />
+        <argument
+            android:name="quote"
+            app:argType="com.cosmos.candelabra.data.model.db.Quote"
+            app:nullable="true"
+            android:defaultValue="@null"/>
+    </fragment>
+
+    <action
+        android:id="@+id/openSearch"
+        app:destination="@id/search"/>
+
+    <action
+        android:id="@+id/openQuoteDetails"
+        app:destination="@id/quote_details">
+        <argument
+            android:name="symbol"
+            app:argType="string" />
+        <argument
+            android:name="name"
+            app:argType="string" />
+        <argument
+            android:name="quote"
+            app:argType="com.cosmos.candelabra.data.model.db.Quote"
+            app:nullable="true"
+            android:defaultValue="@null"/>
+    </action>
+
+    <action
+        android:id="@+id/openOverview"
+        app:destination="@id/overview"
+        app:popUpTo="@id/navigation_graph"/>
+
+    <action
+        android:id="@+id/openWatchlist"
+        app:destination="@id/watchlist"
+        app:popUpTo="@id/overview"/>
+
+    <action
+        android:id="@+id/openPreferences"
+        app:destination="@id/preferences"
+        app:popUpTo="@id/overview"/>
+
+</navigation>

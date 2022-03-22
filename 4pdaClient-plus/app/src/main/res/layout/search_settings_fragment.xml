@@ -1,0 +1,206 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            xmlns:tools="http://schemas.android.com/tools">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <EditText
+            android:id="@+id/query_edit"
+            android:layout_width="match_parent"
+            android:layout_height="44dp"
+            android:inputType="textAutoComplete"
+            android:hint="@string/search_input_hint"
+            android:layout_toLeftOf="@+id/forHideButton"
+            android:layout_toStartOf="@+id/forHideButton" />
+
+        <ImageButton
+            app:srcCompat="@drawable/settings_grey"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:id="@+id/forHideButton"
+            android:layout_width="44dp"
+            android:layout_height="44dp"
+            android:layout_gravity="right"
+            android:text="Дополнительно"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:id="@+id/forHide"
+            android:visibility="gone"
+            tools:visibility="visible"
+            android:layout_below="@+id/forHideButton">
+
+            <EditText
+                android:id="@+id/username_edit"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:inputType="textAutoComplete"
+                android:hint="@string/search_username_input_hint" />
+
+            <RelativeLayout
+                android:id="@+id/topics_group"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <ProgressBar
+                    android:id="@+id/topics_progress"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:layout_centerVertical="true" />
+
+                <CheckBox
+                    android:id="@+id/topics_check"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:checked="true"
+                    android:enabled="false"
+                    android:text="" />
+            </RelativeLayout>
+
+            <LinearLayout
+                android:id="@+id/forums_group"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_marginTop="4dp">
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <Button
+                        android:id="@+id/forums_button"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/forums" />
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <ProgressBar
+                            android:id="@+id/forums_progress"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerHorizontal="true"
+                            android:layout_centerVertical="true" />
+
+                        <Spinner
+                            android:id="@+id/forums_spinner"
+                            android:layout_width="match_parent"
+                            android:layout_height="48dp"
+                            android:layout_marginLeft="4dp"
+                            android:layout_centerVertical="true" />
+                    </RelativeLayout>
+
+
+                </LinearLayout>
+
+
+            </LinearLayout>
+
+            <TableLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:stretchColumns="1"
+                android:layout_marginTop="4dp">
+
+                <TableRow
+                    android:id="@+id/result_group"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:text="@string/search_fragment_settings_type"
+                        android:textAppearance="?android:attr/textAppearanceSmall"
+                        android:textStyle="bold" />
+
+                    <ToggleButton
+                        android:id="@+id/result_toggle"
+                        android:layout_width="match_parent"
+                        android:layout_height="36dp"
+
+                        android:textOn="@string/SearchResultTitles_posts"
+                        android:textOff="@string/SearchResultTitles_topics" />
+
+                </TableRow>
+
+                <TableRow
+                    android:id="@+id/source_group"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:text="@string/search_fragment_settings_search_in"
+                        android:textAppearance="?android:attr/textAppearanceSmall"
+                        android:textStyle="bold" />
+
+
+                    <Spinner
+                        android:id="@+id/source_spinner"
+                        android:layout_width="match_parent"
+                        android:layout_height="36dp"
+                        android:entries="@array/SearchSourceArray"
+                        android:entryValues="@array/SearchSourceValues" />
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:text="@string/search_fragment_settings_sort_by"
+                        android:textAppearance="?android:attr/textAppearanceSmall"
+                        android:textStyle="bold" />
+
+                    <Spinner
+                        android:id="@+id/sort_spinner"
+                        android:layout_width="match_parent"
+                        android:layout_height="36dp"
+                        android:entries="@array/SearchSortArray"
+                        android:entryValues="@array/SearchSortValues" />
+                </TableRow>
+            </TableLayout>
+
+            <CheckBox
+                android:id="@+id/subforums_check"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:checked="true"
+                android:text="@string/search_fragment_settings_subforums"
+                android:layout_marginTop="4dp" />
+
+            <Button
+                android:id="@+id/remember"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="end"
+                android:text="@string/remember"
+                android:visibility="gone"/>
+        </LinearLayout>
+    </RelativeLayout>
+</ScrollView>

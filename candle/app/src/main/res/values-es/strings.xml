@@ -1,0 +1,72 @@
+<resources>
+    <string name="app_name">Candle</string>
+    <string name="app_description">Visor de acciones de mercado en tiempo real</string>
+
+    <string name="quote_change_pos">+%1$.2f</string>
+    <string name="quote_change_neg">%1$.2f</string>
+
+    <string name="quote_change_percent_pos">+%1$.2f%%</string>
+    <string name="quote_change_percent_neg">%1$.2f%%</string>
+
+    <string name="overview_fragment_title">Vistazo</string>
+    <string name="watchlist_fragment_title">Lista de deseos</string>
+    <string name="preferences_fragment_title">Ajustes</string>
+    <string name="about_fragment_title">Acerca de</string>
+
+    <string name="quote_type_equity">Equidad</string>
+    <string name="quote_type_etf">ETF</string>
+    <string name="quote_type_currency">Moneda</string>
+
+    <string name="search_hint">Buscar</string>
+
+    <string name="chart_label_years">YYYY</string>
+    <string name="chart_label_days">MM/dd</string>
+    <string name="chart_label_hours">hh:mm</string>
+
+    <string name="quote_details_open">Abrir</string>
+    <string name="quote_details_day_range">Rango diario</string>
+    <string name="quote_details_ftw_range">Rango por 52 semanas</string>
+    <string name="quote_details_volume">Volumen</string>
+    <string name="quote_details_market_cap">Cap de mercado</string>
+    <string name="quote_details_pe_ratio">Radio PE</string>
+    <string name="quote_details_earnings_date">Fecha de ingresos</string>
+    <string name="quote_details_dividend_rate">Radio de ingresos</string>
+    <string name="quote_details_dividend_date">Fecha de dividendos</string>
+
+    <string name="date_format_long">MMM dd, yyyy</string>
+
+    <string name="number_format_thousands">%1$.2fK</string>
+    <string name="number_format_millions">%1$.2fM</string>
+    <string name="number_format_billions">%1$.2fB</string>
+    <string name="number_format_trillions">%1$.2fT</string>
+
+    <string name="chart_period_day_1">1D</string>
+    <string name="chart_period_week_2">2W</string>
+    <string name="chart_period_month_1">1M</string>
+    <string name="chart_period_ytd">YTD</string>
+    <string name="chart_period_year_1">1Y</string>
+    <string name="chart_period_max">MAX</string>
+
+    <string name="chart_no_data">No hay datos gráficos disponibles</string>
+
+    <string name="preferences_section_ui">UI</string>
+    <string name="preferences_section_misc">Misc.</string>
+
+    <string name="preference_night_mode">Tema</string>
+    <string name="preference_night_mode_light">Tema claro</string>
+    <string name="preference_night_mode_dark">Tema oscuro</string>
+    <string name="preference_night_mode_system">Seguir sistema</string>
+
+    <string name="preference_about">Acerca de</string>
+
+    <string name="about_section_credits">Créditos</string>
+    <string name="about_section_libraries">Librería</string>
+
+    <string name="dialog_night_mode_title">Tema</string>
+
+    <string name="dialog_credit_show_website">Mostrar sitio web</string>
+    <string name="dialog_credit_show_license">Mostrar licencia</string>
+
+    <string name="network_retry_message">Algo pasó mal</string>
+    <string name="network_retry_action">Reintentar</string>
+</resources>

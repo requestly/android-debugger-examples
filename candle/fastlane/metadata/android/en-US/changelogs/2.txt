@@ -1,0 +1,5 @@
+Removed
+- Splashscreen
+
+Fixed
+- Installation on older devices

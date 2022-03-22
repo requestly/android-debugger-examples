@@ -1,0 +1,280 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- Overview -->
+
+    <style name="Widget.Quote.Base" parent="Widget.MaterialComponents.TextView">
+        <item name="android:textColor">@color/white</item>
+    </style>
+
+    <style name="Widget.Quote.Title" parent="Widget.Quote.Base">
+        <item name="android:textStyle">bold</item>
+        <item name="android:textAllCaps">true</item>
+        <item name="android:textSize">16sp</item>
+    </style>
+
+    <style name="Widget.Quote.Subtitle" parent="Widget.Quote.Base">
+        <item name="android:textSize">12sp</item>
+    </style>
+
+    <style name="Widget.Quote.Change" parent="Widget.Quote.Base">
+        <item name="android:textSize">12sp</item>
+    </style>
+
+    <style name="Widget.Quote.Price" parent="Widget.Quote.Base">
+        <item name="android:textSize">15sp</item>
+    </style>
+
+    <!-- Watchlist -->
+
+    <style name="Widget.Quote.Watchlist.Base" parent="Widget.Quote.Base"/>
+
+    <style name="Widget.Quote.Watchlist.Title" parent="Widget.Quote.Title"/>
+
+    <style name="Widget.Quote.Watchlist.Subtitle" parent="Widget.Quote.Subtitle">
+        <item name="android:textColor">@color/white_65</item>
+    </style>
+
+    <style name="Widget.Quote.Watchlist.Price" parent="Widget.Quote.Price"/>
+
+    <style name="Widget.Quote.Watchlist.Change" parent="Widget.Quote.Change"/>
+
+    <style name="Widget.Quote.Watchlist.Close" parent="Widget.Quote.Watchlist.Base">
+        <item name="android:textSize">12sp</item>
+        <item name="android:textColor">@color/white_65</item>
+    </style>
+
+    <style name="Widget.Quote.Watchlist.NoData" parent="Widget.Quote.Watchlist.Base">
+        <item name="android:textSize">12sp</item>
+        <item name="android:textColor">@color/white</item>
+    </style>
+
+    <!-- Search -->
+
+    <style name="Widget.Search.Base" parent="Widget.MaterialComponents.TextView">
+        <item name="android:textColor">@color/white</item>
+    </style>
+
+    <style name="Widget.Search.Quote.Title" parent="Widget.Search.Base">
+        <item name="android:textStyle">bold</item>
+        <item name="android:textAllCaps">true</item>
+        <item name="android:textSize">16sp</item>
+    </style>
+
+    <style name="Widget.Search.Quote.Subtitle" parent="Widget.Search.Base">
+        <item name="android:textSize">12sp</item>
+        <item name="android:textColor">@color/white_65</item>
+    </style>
+
+    <style name="Widget.Search.Quote.Exchange" parent="Widget.Search.Base">
+        <item name="android:textSize">16sp</item>
+        <item name="android:textColor">@color/white_65</item>
+    </style>
+
+    <style name="Widget.Search.Quote.Type" parent="Widget.Search.Base">
+        <item name="android:textSize">12sp</item>
+        <item name="android:textColor">@color/white_65</item>
+    </style>
+
+    <style name="Widget.Toolbar.Main" parent="Widget.MaterialComponents.Toolbar.Primary">
+        <item name="materialThemeOverlay">@style/ThemeOverlay.App.Toolbar</item>
+        <item name="titleTextAppearance">@style/TextAppearance.Toolbar.Title</item>
+        <item name="android:elevation">0dp</item>
+        <item name="titleCentered">true</item>
+    </style>
+
+    <style name="ThemeOverlay.App.Toolbar" parent="">
+        <item name="colorPrimary">@color/background</item>
+        <item name="colorPrimaryVariant">@color/teal_200</item>
+        <item name="colorOnPrimary">@color/text_color</item>
+    </style>
+
+    <style name="TextAppearance.Toolbar.Title" parent="TextAppearance.MaterialComponents.Headline5">
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="TextAppearance.Toolbar.Subtitle" parent="TextAppearance.MaterialComponents.Caption">
+        <item name="android:textAlignment">center</item>
+    </style>
+
+    <style name="Widget.Card.Base" parent="Widget.MaterialComponents.CardView">
+        <item name="cardElevation">@dimen/card_elevation</item>
+        <item name="cardCornerRadius">@dimen/card_radius</item>
+    </style>
+
+    <style name="Widget.FloatingActionButton" parent="Widget.MaterialComponents.FloatingActionButton">
+        <item name="fabCustomSize">48dp</item>
+        <item name="elevation">@dimen/fab_elevation</item>
+        <item name="shapeAppearanceOverlay">@style/ShapeAppearance.FloatingActionButton</item>
+    </style>
+
+    <style name="ShapeAppearance.FloatingActionButton" parent="ShapeAppearance.MaterialComponents.SmallComponent">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">16dp</item>
+    </style>
+
+    <style name="ShapeAppearance.Card.Image.Background" parent="">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">@dimen/card_radius</item>
+    </style>
+
+    <!-- Chart -->
+
+    <style name="Widget.Chip.Chart" parent="Widget.MaterialComponents.Chip.Choice">
+        <item name="chipBackgroundColor">@color/chip_background_color</item>
+        <item name="chipSurfaceColor">@color/chip_surface_color</item>
+        <item name="android:textColor">@color/chip_text_color</item>
+        <item name="android:textAllCaps">true</item>
+        <item name="android:stateListAnimator">@null</item>
+        <item name="rippleColor">@color/white</item>
+        <item name="shapeAppearanceOverlay">@style/ShapeAppearance.Chip</item>
+    </style>
+
+    <style name="ShapeAppearance.Chip" parent="ShapeAppearance.MaterialComponents.SmallComponent">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">8dp</item>
+    </style>
+
+    <style name="Widget.Chart.Marker.Price" parent="Widget.MaterialComponents.TextView">
+        <item name="android:textStyle">bold</item>
+        <item name="android:textSize">14sp</item>
+        <item name="android:textColor">@color/white</item>
+    </style>
+
+    <style name="Widget.Chart.Marker.Date" parent="Widget.MaterialComponents.TextView">
+        <item name="android:textSize">12sp</item>
+        <item name="android:textColor">@color/white</item>
+    </style>
+
+    <!-- Details -->
+
+    <style name="Widget.Quote.Details.Title" parent="Widget.MaterialComponents.TextView">
+        <item name="android:textColor">@color/text_color_secondary</item>
+    </style>
+
+    <style name="Widget.Quote.Details.Data" parent="Widget.MaterialComponents.TextView">
+        <item name="android:textSize">24sp</item>
+    </style>
+
+    <style name="Widget.Quote.Details.Price" parent="Widget.MaterialComponents.TextView">
+        <item name="android:textSize">36sp</item>
+        <item name="android:textColor">@color/white</item>
+    </style>
+
+    <style name="Widget.Quote.Details.NoData" parent="Widget.MaterialComponents.TextView">
+        <item name="android:textColor">@color/white</item>
+    </style>
+
+    <!-- Preferences -->
+
+    <style name="ThemeOverlay.Preference" parent="PreferenceThemeOverlay">
+        <item name="android:layout">@layout/layout_preference_list</item>
+        <item name="preferenceStyle">@style/Preference</item>
+        <item name="preferenceScreenStyle">@style/Preference.PreferenceScreen</item>
+        <item name="preferenceCategoryStyle">@style/Preference.Category</item>
+        <item name="preferenceFragmentListStyle">@style/Widget.Preferences.List</item>
+    </style>
+
+    <style name="Preference" parent="Preference.Material">
+        <item name="layout">@layout/layout_preference</item>
+    </style>
+
+    <style name="Preference.PreferenceScreen" parent="Preference.PreferenceScreen.Material">
+        <item name="layout">@layout/layout_preference</item>
+    </style>
+
+    <style name="Preference.Category" parent="Preference.Category.Material">
+        <item name="layout">@layout/layout_preference_category</item>
+        <item name="allowDividerAbove">false</item>
+        <item name="allowDividerBelow">false</item>
+    </style>
+
+    <style name="Widget.Preferences.List" parent="">
+        <item name="android:overScrollMode">never</item>
+    </style>
+
+    <style name="Widget.Preferences.Section" parent="Widget.MaterialComponents.TextView">
+        <item name="android:textSize">24sp</item>
+        <item name="android:textColor">?attr/colorPrimary</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textAllCaps">true</item>
+        <item name="android:letterSpacing">0.2</item>
+        <item name="android:textAlignment">center</item>
+    </style>
+
+    <style name="Widget.Preferences.Card" parent="Widget.MaterialComponents.CardView">
+        <item name="cardElevation">0dp</item>
+        <item name="cardCornerRadius">0dp</item>
+        <item name="cardBackgroundColor">@android:color/transparent</item>
+    </style>
+
+    <style name="Widget.Preferences.Item" parent="Widget.MaterialComponents.TextView">
+        <item name="android:textSize">14sp</item>
+    </style>
+
+    <!-- Dialog -->
+
+    <style name="ThemeOverlay.Dialog" parent="ThemeOverlay.MaterialComponents.MaterialAlertDialog">
+        <item name="colorSurface">@color/background</item>
+        <item name="alertDialogStyle">@style/Dialog</item>
+    </style>
+
+    <style name="Dialog" parent="MaterialAlertDialog.MaterialComponents">
+        <item name="shapeAppearance">@style/ShapeAppearance.Dialog</item>
+    </style>
+
+    <style name="ShapeAppearance.Dialog" parent="ShapeAppearance.MaterialComponents.MediumComponent">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">16dp</item>
+    </style>
+
+    <style name="ShapeAppearance.Image.Circular" parent="">
+        <item name="cornerSize">50%</item>
+    </style>
+
+    <!-- About -->
+
+    <style name="Widget.About.Title" parent="Widget.MaterialComponents.TextView">
+        <item name="android:textSize">20sp</item>
+        <item name="android:textAllCaps">true</item>
+    </style>
+
+    <style name="Widget.About.Card" parent="Widget.Card.Base">
+        <item name="android:layout_marginStart">16dp</item>
+        <item name="android:layout_marginEnd">16dp</item>
+        <item name="android:layout_marginTop">8dp</item>
+        <item name="android:layout_marginBottom">8dp</item>
+    </style>
+
+    <style name="Widget.About.Credit.Title" parent="Widget.MaterialComponents.TextView">
+        <item name="android:textSize">18sp</item>
+    </style>
+
+    <style name="Widget.About.Credit.Description" parent="Widget.MaterialComponents.TextView">
+        <item name="android:textSize">15sp</item>
+        <item name="android:textColor">@color/text_color_secondary</item>
+    </style>
+
+    <style name="Widget.About.Credit.Author" parent="Widget.MaterialComponents.TextView">
+        <item name="android:textSize">14sp</item>
+        <item name="android:textColor">@color/text_color_secondary</item>
+    </style>
+
+    <style name="Widget.About.Credit.License" parent="Widget.MaterialComponents.TextView">
+        <item name="android:textSize">14sp</item>
+    </style>
+
+    <style name="Widget.About.Credit.Section" parent="Widget.Preferences.Section"/>
+
+    <style name="Widget.InfoBar" parent="Widget.MaterialComponents.CardView">
+        <item name="cardBackgroundColor">?attr/colorPrimary</item>
+        <item name="cardElevation">8dp</item>
+        <item name="cardCornerRadius">8dp</item>
+        <item name="android:layout_marginStart">16dp</item>
+        <item name="android:layout_marginEnd">16dp</item>
+        <item name="textMessageColor">@android:color/white</item>
+        <item name="textActionColor">@android:color/white</item>
+        <item name="slideEdge">top</item>
+    </style>
+
+</resources>

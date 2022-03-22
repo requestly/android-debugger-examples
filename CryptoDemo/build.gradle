@@ -1,0 +1,22 @@
+buildscript {
+    ext {
+        compose_version = '1.2.0-alpha02'
+        lifecycle_version = '2.4.0'
+        dagger_version = '2.38.1'
+        retrofit_version = '2.9.0'
+    }
+    repositories {
+        google()
+        mavenCentral { url "https://plugins.gradle.org/m2/" }
+    }
+    dependencies {
+        classpath 'com.android.tools.build:gradle:7.1.0'
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:1.6.10"
+        classpath 'com.google.dagger:hilt-android-gradle-plugin:2.38.1'
+        classpath 'com.google.gms:google-services:4.3.10'
+    }
+}
+
+task clean(type: Delete) {
+    delete rootProject.buildDir
+}

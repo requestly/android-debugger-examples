@@ -1,0 +1,52 @@
+// Top-level build file where you can add configuration options common to all sub-projects/modules.
+
+buildscript {
+    ext.kotlin_version = '1.4.32'
+    repositories {
+        jcenter()
+        mavenCentral()
+        maven {
+            url 'https://maven.google.com'
+        }
+        google()
+    }
+    dependencies {
+        classpath 'com.android.tools.build:gradle:4.1.3'
+        classpath 'org.jetbrains.kotlin:kotlin-gradle-plugin:1.6.0'
+        classpath 'com.google.dagger:hilt-android-gradle-plugin:2.40'
+    }
+}
+
+allprojects {
+    repositories {
+        jcenter()
+        maven {
+            url 'https://maven.google.com/'
+            name 'Google'
+        }
+    }
+}
+
+ext {
+    compileSdkVersion = 31
+    targetSdkVersion = 30
+    minSdk = 21
+
+    appcompat = '1.4.0'
+    coroutines = '1.5.2'
+    coil = '1.4.0'
+    coreCtx='1.7.0'
+    fragmentCtx='1.4.0'
+    gson= '2.8.9'
+    hilt = '2.40.5'
+    jsoup = '1.14.3'
+    lifecycle='2.4.0'
+    material='1.4.0'
+    moshi='1.12.0'
+    okhttp3 = "3.12.3"// увеличивать нельзя!!
+    recyclerview='1.2.1'
+    room = "2.4.0"
+    rxjava2 = "2.1.1"
+    swiperefreshlayout="1.1.0"
+    timber="5.0.1"
+}

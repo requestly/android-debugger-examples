@@ -1,0 +1,55 @@
+# based on https://habr.com/ru/company/tuturu/blog/530260/
+name: Test_and_build_signed_artifacts_on_release
+
+on:
+  pull_request:
+    branches:
+      - 'master'
+  push:
+    branches:
+      - 'master'
+      
+
+env:
+  RELEASE_STORE_PASSWORD: ${{ secrets.RELEASE_STORE_PASSWORD }}
+  RELEASE_KEY_ALIAS: ${{ secrets.RELEASE_KEY_ALIAS }}
+  RELEASE_KEY_PASSWORD: ${{ secrets.RELEASE_KEY_PASSWORD }}
+
+jobs:
+#based on https://gist.github.com/alexanderbazo/227476190ef5ab655795e34ec0d314d6          
+  apk:
+    name: Generate APK
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Set up JDK
+        uses: actions/setup-java@v2
+        with:
+          distribution: 'zulu'
+          java-version: '11'   
+
+      - name: Setup Android SDK
+        uses: android-actions/setup-android@v2
+        
+      - name: Build APK
+        run: |
+          ./gradlew test
+          ./gradlew assembleRelease
+          
+# based on https://medium.com/google-developer-experts/github-actions-for-android-developers-6b54c8a32f55         
+      - name: Save name of our Artifact
+        id: set-result-artifact
+        run: |
+          ARTIFACT_PATHNAME_APK=$(ls app/build/outputs/apk/beta/release/*.apk | head -n 1)
+          ARTIFACT_NAME_APK=$(basename $ARTIFACT_PATHNAME_APK)
+          echo "ARTIFACT_NAME_APK is " ${ARTIFACT_NAME_APK}
+          echo "ARTIFACT_PATHNAME_APK=${ARTIFACT_PATHNAME_APK}" >> $GITHUB_ENV
+          echo "ARTIFACT_NAME_APK=${ARTIFACT_NAME_APK}" >> $GITHUB_ENV     
+          
+      - name: Upload APK
+        uses: actions/upload-artifact@v1
+        with:
+          name: ${{ env.ARTIFACT_NAME_APK }}
+          path: ${{ env.ARTIFACT_PATHNAME_APK }}

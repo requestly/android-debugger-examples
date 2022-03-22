@@ -1,0 +1,220 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:background="@color/quote_details_accent"
+    android:transitionName="@string/quote_card_detail_transition_name"
+    android:fitsSystemWindows="false">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/layout_content"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline_app_bar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintGuide_begin="?actionBarSize"
+            android:orientation="horizontal"/>
+
+        <ImageView
+            android:id="@+id/back"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="@id/guideline_app_bar"
+            android:layout_margin="@dimen/toolbar_action_margin"
+            android:background="?selectableItemBackgroundBorderless"
+            app:tint="@color/white"
+            android:src="@drawable/ic_arrow_back"/>
+
+        <ImageView
+            android:id="@+id/toggle_quote"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="@id/guideline_app_bar"
+            android:layout_margin="@dimen/toolbar_action_margin"
+            android:background="?selectableItemBackgroundBorderless"
+            app:tint="@color/white"
+            android:src="@drawable/ic_watchlist_add"/>
+
+        <TextView
+            android:id="@+id/symbol"
+            style="@style/TextAppearance.Toolbar.Title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toTopOf="@id/name"
+            android:textColor="@color/white"
+            tools:text="AAPL"/>
+
+        <TextView
+            android:id="@+id/name"
+            style="@style/TextAppearance.Toolbar.Subtitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/symbol"
+            app:layout_constraintBottom_toBottomOf="@id/guideline_app_bar"
+            android:paddingHorizontal="32dp"
+            android:textColor="@color/white_65"
+            tools:text="Apple Inc."/>
+
+        <com.robinhood.ticker.TickerView
+            android:id="@+id/price"
+            style="@style/Widget.Quote.Details.Price"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/guideline_app_bar"
+            android:layout_marginTop="@dimen/quote_details_margin"
+            android:gravity="center"
+            tools:text="$132.99"/>
+
+        <com.robinhood.ticker.TickerView
+            android:id="@+id/change"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/change_percent"
+            app:layout_constraintTop_toBottomOf="@id/price"
+            app:layout_constraintBottom_toTopOf="@id/chart_prices"
+            app:layout_constraintHorizontal_chainStyle="packed"
+            android:background="@drawable/change_details_background"
+            android:layout_margin="@dimen/quote_details_margin"
+            android:padding="@dimen/quote_details_padding"
+            android:gravity="center"
+            tools:text="+2.63"/>
+
+        <com.robinhood.ticker.TickerView
+            android:id="@+id/change_percent"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toEndOf="@id/change"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@id/change"
+            app:layout_constraintBottom_toBottomOf="@id/change"
+            android:background="@drawable/change_details_background"
+            android:padding="@dimen/quote_details_padding"
+            android:gravity="center"
+            tools:text="+2.02%"/>
+
+        <com.github.mikephil.charting.charts.LineChart
+            android:id="@+id/chart_prices"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/change"
+            app:layout_constraintBottom_toTopOf="@id/group_period"/>
+
+        <TextView
+            android:id="@+id/no_data"
+            style="@style/Widget.Quote.Details.NoData"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="@id/chart_prices"
+            app:layout_constraintEnd_toEndOf="@id/chart_prices"
+            app:layout_constraintTop_toTopOf="@id/chart_prices"
+            app:layout_constraintBottom_toBottomOf="@id/chart_prices"
+            android:text="@string/chart_no_data"/>
+
+        <com.google.android.material.chip.ChipGroup
+            android:id="@+id/group_period"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/chart_prices"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:layout_marginTop="@dimen/quote_details_margin"
+            android:layout_marginBottom="@dimen/quote_details_peek_height"
+            app:singleLine="true"
+            app:singleSelection="true"
+            app:selectionRequired="true">
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chip_period_day"
+                style="@style/Widget.Chip.Chart"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:checked="true"
+                android:text="@string/chart_period_day_1"/>
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chip_period_week_2"
+                style="@style/Widget.Chip.Chart"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/chart_period_week_2"/>
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chip_period_month"
+                style="@style/Widget.Chip.Chart"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/chart_period_month_1"/>
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chip_period_ytd"
+                style="@style/Widget.Chip.Chart"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/chart_period_ytd"/>
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chip_period_year"
+                style="@style/Widget.Chip.Chart"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/chart_period_year_1"/>
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chip_period_max"
+                style="@style/Widget.Chip.Chart"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/chart_period_max"/>
+
+        </com.google.android.material.chip.ChipGroup>
+
+        <com.cosmos.candelabra.ui.common.InfoBarView
+            android:id="@+id/info_retry"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/guideline_app_bar"
+            android:layout_marginTop="@dimen/info_bar_margin_top"
+            style="@style/Widget.InfoBar"
+            app:cardBackgroundColor="@color/pink_500"
+            app:textMessage="@string/network_retry_message"
+            app:textAction="@string/network_retry_action"
+            android:visibility="gone"
+            tools:visibility="visible"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <View
+        android:id="@+id/scrim"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/black"
+        android:alpha="0"/>
+
+    <include
+        android:id="@+id/include_quote_details"
+        layout="@layout/include_quote_details"/>
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

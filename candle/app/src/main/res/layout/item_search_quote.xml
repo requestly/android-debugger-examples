@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="quote"
+            type="com.cosmos.candelabra.data.model.SearchItem.Quote" />
+    </data>
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/layout_root"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/search_quote_margin_horizontal"
+        android:layout_marginVertical="@dimen/search_quote_margin_vertical"
+        tools:layout_width="175dp"
+        android:transitionName="@{@string/quote_card_transition_name(quote.symbol)}">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/search_quote_card_background"
+            android:padding="@dimen/search_quote_padding">
+
+            <TextView
+                android:id="@+id/symbol"
+                style="@style/Widget.Search.Quote.Title"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toStartOf="@id/barrier"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintHorizontal_bias="0"
+                android:paddingEnd="@dimen/search_quote_padding_end"
+                android:text="@{quote.symbol}"
+                tools:text="AAPL"/>
+
+            <TextView
+                android:id="@+id/name"
+                style="@style/Widget.Search.Quote.Subtitle"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                app:layout_constraintStart_toStartOf="@id/symbol"
+                app:layout_constraintEnd_toStartOf="@id/barrier"
+                app:layout_constraintTop_toBottomOf="@id/symbol"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintHorizontal_bias="0"
+                app:layout_constraintVertical_bias="0"
+                android:paddingEnd="@dimen/search_quote_padding_end"
+                android:text="@{quote.name}"
+                tools:text="Apple Inc."/>
+
+            <androidx.constraintlayout.widget.Barrier
+                android:id="@+id/barrier"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:barrierDirection="left"
+                app:constraint_referenced_ids="exchange,type"/>
+
+            <TextView
+                android:id="@+id/exchange"
+                style="@style/Widget.Search.Quote.Exchange"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                android:text="@{quote.exchange}"
+                tools:text="NASDAQ"/>
+
+            <TextView
+                android:id="@+id/type"
+                style="@style/Widget.Search.Quote.Type"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/exchange"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintVertical_bias="0"
+                android:text="@{quote.quoteType.text}"
+                tools:text="Equity"/>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </com.google.android.material.card.MaterialCardView>
+</layout>

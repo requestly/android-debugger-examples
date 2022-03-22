@@ -1,0 +1,14 @@
+<resources>
+    <string name="app_name">cryptodemo</string>
+    <string name="alert_error_title">Oops…</string>
+    <string name="alert_network_error_subtitle">There was an error trying to list the markets, please check you have network connection and try again.</string>
+    <string name="alert_server_error_subtitle">There was an error related to the CoinGecko API, please try again later.</string>
+    <string name="alert_internal_error_subtitle">There was an unfortunately internal error…</string>
+    <string name="coin_ath">All time high</string>
+    <string name="coin_market_cap_position">Market cap position</string>
+    <string name="coin_current_price">Current price</string>
+    <string name="coin_market_cap">Market cap</string>
+    <string name="coin_price_change_24h">Price change 24h</string>
+    <string name="coin_price_percentage_change_24h">Price percentage change 24h</string>
+    <string name="coin_description">Description</string>
+</resources>
