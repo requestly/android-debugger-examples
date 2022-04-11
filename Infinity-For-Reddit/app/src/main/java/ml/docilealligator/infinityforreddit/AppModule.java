@@ -70,9 +70,10 @@ class AppModule {
     @Provides
     @Named("no_oauth")
     @Singleton
-    Retrofit provideRetrofit() {
+    Retrofit provideRetrofit(@Named("rqokhttp") OkHttpClient okHttpClient) {
         return new Retrofit.Builder()
                 .baseUrl(APIUtils.API_BASE_URI)
+                .client(okHttpClient)
                 .addConverterFactory(ScalarsConverterFactory.create())
                 .addCallAdapterFactory(GuavaCallAdapterFactory.create())
                 .build();
@@ -214,6 +215,24 @@ class AppModule {
     @Named("rpan")
     @Singleton
     OkHttpClient provideRPANOkHttpClient() {
+        Context appContext = Infinity.getContext();
+        RQCollector collector = new RQCollector(appContext, "bk9fvxFXM5HNwaMc6gkZ");
+        RQInterceptor rqInterceptor = new RQInterceptor.Builder(appContext)
+                .collector(collector)
+                .build();
+
+        return new OkHttpClient.Builder()
+                .addInterceptor(rqInterceptor)
+                .connectTimeout(30, TimeUnit.SECONDS)
+                .readTimeout(30, TimeUnit.SECONDS)
+                .writeTimeout(30, TimeUnit.SECONDS)
+                .build();
+    }
+
+    @Provides
+    @Named("rqokhttp")
+    @Singleton
+    OkHttpClient provideRqOkHttpClient() {
         Context appContext = Infinity.getContext();
         RQCollector collector = new RQCollector(appContext, "bk9fvxFXM5HNwaMc6gkZ");
         RQInterceptor rqInterceptor = new RQInterceptor.Builder(appContext)

@@ -63,7 +63,7 @@ dependencies {
     implementation "androidx.paging:paging-guava:$pagingVersion"
     implementation 'androidx.preference:preference:1.1.1'
     implementation 'androidx.recyclerview:recyclerview:1.2.1'
-    def roomVersion = "2.3.0"
+    def roomVersion = "2.4.0-alpha04"
     implementation "androidx.room:room-runtime:$roomVersion"
     annotationProcessor "androidx.room:room-compiler:$roomVersion"
     implementation 'androidx.viewpager2:viewpager2:1.1.0-beta01'
@@ -184,8 +184,8 @@ dependencies {
     implementation 'me.zhanghai.android.fastscroll:library:1.1.7'
 
     implementation 'com.otaliastudios:zoomlayout:1.9.0'
-    debugImplementation "io.requestly.rqinterceptor:library:1.0.1"
-    releaseImplementation "io.requestly.rqinterceptor:library-no-op:1.0.1"
+    debugImplementation "io.requestly.rqinterceptor:library:1.1.1"
+    releaseImplementation "io.requestly.rqinterceptor:library-no-op:1.1.1"
 
 /**** Builds and flavors ****/
     // debugImplementation because LeakCanary should only run in debug builds.

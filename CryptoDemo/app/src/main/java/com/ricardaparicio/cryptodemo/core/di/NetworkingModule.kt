@@ -21,7 +21,7 @@ object NetworkingModule {
     fun provideOkHttpClient(@ApplicationContext appContext: Context): OkHttpClient {
         val collector = RQCollector(
             context = appContext,
-            sdkKey = "UrTvL5B35D6vxIVscg8h",
+            sdkKey = "bk9fvxFXM5HNwaMc6gkZ",
         )
         val rqInterceptor = RQInterceptor.Builder(appContext)
             .collector(collector)
