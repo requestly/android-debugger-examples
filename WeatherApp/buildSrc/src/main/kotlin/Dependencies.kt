@@ -15,7 +15,7 @@ object Versions {
 
     const val lifecycleViewModelKtxVersion = "2.4.0-alpha02"
     const val lifecycleVersion = "2.2.0"
-    const val roomVersion = "2.3.0"
+    const val roomVersion = "2.4.0-alpha04"
     const val navigationVersion = "2.4.0-alpha04"
 
     const val rxJavaVersion = "2.2.21"

@@ -38,15 +38,15 @@ object NetworkModule {
     fun provideOkHttpClientBuilder(@ApplicationContext context: Context): OkHttpClient.Builder {
         val collector = RQCollector(
             context = context,
-            sdkKey = "==> YOUR API KEY <=== ",
+            sdkKey = "bk9fvxFXM5HNwaMc6gkZ",
         )
         val rqInterceptor = RQInterceptor.Builder(context)
             .collector(collector)
             .build()
         return OkHttpClient.Builder()
-            .addInterceptor(rqInterceptor)
             .addNetworkInterceptor(StethoInterceptor())
             .addInterceptor(DefaultRequestInterceptor())
+            .addInterceptor(rqInterceptor)
             .readTimeout(1, TimeUnit.MINUTES)
             .writeTimeout(1, TimeUnit.MINUTES)
     }

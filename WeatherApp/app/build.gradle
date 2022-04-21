@@ -166,8 +166,8 @@ dependencies {
     testImplementation Dependencies.coreTesting
     testImplementation Dependencies.robolectric
 
-    debugImplementation "io.requestly.rqinterceptor:library:1.1.1"
-    releaseImplementation "io.requestly.rqinterceptor:library-no-op:1.1.1"
+    debugImplementation "io.requestly.rqinterceptor:library:1.1.5"
+    releaseImplementation "io.requestly.rqinterceptor:library-no-op:1.1.5"
 }
 
 ktlint {
