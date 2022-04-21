@@ -110,6 +110,7 @@ dependencies {
     androidTestImplementation "androidx.compose.ui:ui-test-junit4:$compose_version"
     debugImplementation "androidx.compose.ui:ui-tooling:$compose_version"
 
-    debugImplementation "io.requestly.rqinterceptor:library:1.1.1"
-    releaseImplementation "io.requestly.rqinterceptor:library-no-op:1.1.1"
+//    implementation("io.requestly.rqinterceptor:library:1.0.0-SNAPSHOT")
+    debugImplementation "io.requestly.rqinterceptor:library:1.1.5"
+    releaseImplementation "io.requestly.rqinterceptor:library-no-op:1.1.5"
 }
