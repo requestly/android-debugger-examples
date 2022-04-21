@@ -184,8 +184,8 @@ dependencies {
     implementation 'me.zhanghai.android.fastscroll:library:1.1.7'
 
     implementation 'com.otaliastudios:zoomlayout:1.9.0'
-    debugImplementation "io.requestly.rqinterceptor:library:1.1.1"
-    releaseImplementation "io.requestly.rqinterceptor:library-no-op:1.1.1"
+    debugImplementation "io.requestly.rqinterceptor:library:1.1.5"
+    releaseImplementation "io.requestly.rqinterceptor:library-no-op:1.1.5"
 
 /**** Builds and flavors ****/
     // debugImplementation because LeakCanary should only run in debug builds.
