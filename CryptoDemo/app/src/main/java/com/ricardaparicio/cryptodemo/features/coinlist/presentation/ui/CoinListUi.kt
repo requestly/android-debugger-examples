@@ -23,6 +23,7 @@ import com.ricardaparicio.cryptodemo.features.common.domain.model.FiatCurrency
 import com.ricardaparicio.cryptodemo.features.common.ui.AlertError
 import com.ricardaparicio.cryptodemo.features.common.ui.model.CoinSummaryUiModel
 import com.ricardaparicio.cryptodemo.features.coinlist.presentation.viewmodel.CoinListViewModel
+import io.requestly.android.event.api.RequestlyEvent
 
 @Composable
 fun CoinListScreen(onClickCoin: TypedBlock<CoinSummaryUiModel>) {
@@ -78,9 +79,17 @@ private fun FloatingFiatCurrency(
     uiState: CoinListUiState
 ) {
     if (!uiState.contentLoadingUiState.loading) {
+        RequestlyEvent.send(
+            "FAB Button is visible",
+            mapOf("FAB" to " visible")
+        )
         FloatingActionButton(
             modifier = modifier,
-            onClick = { onClickCurrency(uiState.fiatCurrency) }
+            onClick = { onClickCurrency(uiState.fiatCurrency)
+            RequestlyEvent.send(
+                "FAB change currency",
+                mapOf("FAB" to " change currency")
+            )}
         ) {
             Icon(
                 painter = painterResource(
@@ -101,6 +110,7 @@ private fun CoinLazyColumn(
     uiState: CoinListUiState,
     onClickCoin: TypedBlock<CoinSummaryUiModel>
 ) {
+    var n:Int=0
     LazyColumn(
         modifier = Modifier.fillMaxSize().background(MaterialTheme.colors.background),
         contentPadding = PaddingValues(horizontal = 30.dp, vertical = 30.dp)
@@ -108,19 +118,25 @@ private fun CoinLazyColumn(
         val size = uiState.coins.size
         items(size) { index ->
             val coinItem = uiState.coins[index]
-            CoinItem(coinItem, onClickCoin)
+            n++
+            CoinItem(coinItem, onClickCoin,n)
             if (index < size - 1) {
-                Spacer(Modifier.height(20.dp))
+                Spacer(Modifier.height(15.dp))
             }
         }
     }
 }
 
 @Composable
-private fun CoinItem(coinItem: CoinSummaryUiModel, onClickCoin: TypedBlock<CoinSummaryUiModel>) {
+private fun CoinItem(coinItem: CoinSummaryUiModel, onClickCoin: TypedBlock<CoinSummaryUiModel>, n:Int) {
+
     Card(modifier = Modifier
         .fillMaxWidth()
-        .clickable { onClickCoin(coinItem) }
+        .clickable { onClickCoin(coinItem)
+            RequestlyEvent.send(
+                "Coin Card Clicked",
+                mapOf("coin" to " card clicked")
+            )}
     ) {
         Row(
             modifier = Modifier.padding(vertical = 15.dp, horizontal = 20.dp),
@@ -150,6 +166,10 @@ private fun CoinItem(coinItem: CoinSummaryUiModel, onClickCoin: TypedBlock<CoinS
                 modifier = Modifier.fillMaxWidth(),
                 verticalArrangement = Arrangement.Center,
             ) {
+                    RequestlyEvent.send(
+                        "Coin Card $n Created ",
+                        mapOf("Text " to " coin card ")
+                    )
                 Text(
                     text = coinItem.symbol,
                     style = MaterialTheme.typography.subtitle1

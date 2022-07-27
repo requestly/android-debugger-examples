@@ -13,6 +13,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import com.ricardaparicio.cryptodemo.core.util.Block
 import com.ricardaparicio.cryptodemo.features.common.ui.model.AlertErrorUiModel
+import io.requestly.android.event.api.RequestlyEvent
 
 @Composable
 fun AlertError(modifier: Modifier, model: AlertErrorUiModel, onDismiss: Block) {
@@ -37,7 +38,11 @@ fun AlertError(modifier: Modifier, model: AlertErrorUiModel, onDismiss: Block) {
             ) {
                 Button(
                     modifier = Modifier.fillMaxWidth(),
-                    onClick = { onDismiss() }
+                    onClick = { onDismiss()
+                    RequestlyEvent.send(
+                        "AlertErrorUi Dismiss Button",
+                        mapOf("Button" to "Clicked")
+                    )}
                 ) {
                     Text(stringResource(android.R.string.ok))
                 }

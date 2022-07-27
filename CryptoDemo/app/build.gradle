@@ -114,4 +114,5 @@ dependencies {
     releaseImplementation "io.requestly:requestly-android-noop:2.0.0-SNAPSHOT"
     debugImplementation "io.requestly:requestly-android-okhttp:2.0.0-SNAPSHOT"
     releaseImplementation "io.requestly:requestly-android-okhttp-noop:2.0.0-SNAPSHOT"
+    debugImplementation "io.requestly:requestly-android-event:1.0.0"
 }
