@@ -31,6 +31,7 @@ import com.ricardaparicio.cryptodemo.core.util.Block
 import com.ricardaparicio.cryptodemo.features.common.ui.AlertError
 import com.ricardaparicio.cryptodemo.features.coindetail.presentation.viewmodel.CoinDetailViewModel
 import com.ricardaparicio.cryptodemo.theme.Boulder
+import io.requestly.android.event.api.RequestlyEvent
 
 @ExperimentalMaterialApi
 @Composable
@@ -127,6 +128,13 @@ private fun FloatingBackIcon(
 private fun CoinInfo(
     uiState: CoinDetailUiState,
 ) {
+    RequestlyEvent.send(
+        "Coin Info Shown",
+        mapOf(
+            "name" to uiState.coinSummary.name,
+            "id" to uiState.coinSummary.id
+        )
+    )
     Column(
         modifier = Modifier
             .fillMaxWidth()
