@@ -23,6 +23,7 @@ import com.ricardaparicio.cryptodemo.features.common.domain.model.FiatCurrency
 import com.ricardaparicio.cryptodemo.features.common.ui.AlertError
 import com.ricardaparicio.cryptodemo.features.common.ui.model.CoinSummaryUiModel
 import com.ricardaparicio.cryptodemo.features.coinlist.presentation.viewmodel.CoinListViewModel
+import io.requestly.android.event.api.RequestlyEvent
 
 @Composable
 fun CoinListScreen(onClickCoin: TypedBlock<CoinSummaryUiModel>) {
@@ -30,7 +31,9 @@ fun CoinListScreen(onClickCoin: TypedBlock<CoinSummaryUiModel>) {
     CoinList(
         uiState = viewModel.uiState,
         onClickCoin = onClickCoin,
-        onClickCurrency = { currency -> viewModel.onFiatCurrencyClicked(currency) },
+        onClickCurrency = { currency ->
+            RequestlyEvent.send("Currency Changed", mapOf("type" to currency))
+            viewModel.onFiatCurrencyClicked(currency) },
         onClickDismissError = { viewModel.onDismissDialogRequested() }
     )
 }
