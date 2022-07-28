@@ -80,15 +80,15 @@ private fun FloatingFiatCurrency(
 ) {
     if (!uiState.contentLoadingUiState.loading) {
         RequestlyEvent.send(
-            "FAB Button is visible",
-            mapOf("FAB" to " visible")
+            "FAB visible",
+            mapOf()
         )
         FloatingActionButton(
             modifier = modifier,
             onClick = { onClickCurrency(uiState.fiatCurrency)
             RequestlyEvent.send(
-                "FAB change currency",
-                mapOf("FAB" to " change currency")
+                "Currency Changed",
+                mapOf("currency" to uiState.fiatCurrency)
             )}
         ) {
             Icon(
@@ -135,7 +135,10 @@ private fun CoinItem(coinItem: CoinSummaryUiModel, onClickCoin: TypedBlock<CoinS
         .clickable { onClickCoin(coinItem)
             RequestlyEvent.send(
                 "Coin Card Clicked",
-                mapOf("coin" to " card clicked")
+                mapOf(
+                    "id" to coinItem.id,
+                    "name" to coinItem.name,
+                )
             )}
     ) {
         Row(
@@ -167,8 +170,11 @@ private fun CoinItem(coinItem: CoinSummaryUiModel, onClickCoin: TypedBlock<CoinS
                 verticalArrangement = Arrangement.Center,
             ) {
                     RequestlyEvent.send(
-                        "Coin Card $n Created ",
-                        mapOf("Text " to " coin card ")
+                        "Coin Card Created",
+                        mapOf(
+                            "id" to coinItem.id,
+                            "name" to coinItem.name,
+                        )
                     )
                 Text(
                     text = coinItem.symbol,

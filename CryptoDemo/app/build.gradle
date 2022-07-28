@@ -110,9 +110,8 @@ dependencies {
     androidTestImplementation "androidx.compose.ui:ui-test-junit4:$compose_version"
     debugImplementation "androidx.compose.ui:ui-tooling:$compose_version"
 
-    debugImplementation "io.requestly:requestly-android:2.0.0-SNAPSHOT"
-    releaseImplementation "io.requestly:requestly-android-noop:2.0.0-SNAPSHOT"
-    debugImplementation "io.requestly:requestly-android-okhttp:2.0.0-SNAPSHOT"
-    releaseImplementation "io.requestly:requestly-android-okhttp-noop:2.0.0-SNAPSHOT"
-    debugImplementation "io.requestly:requestly-android-event:1.0.0"
+    debugImplementation "io.requestly:requestly-android:2.1.0"
+    releaseImplementation "io.requestly:requestly-android-noop:2.1.0"
+    debugImplementation "io.requestly:requestly-android-okhttp:2.1.0"
+    releaseImplementation "io.requestly:requestly-android-okhttp-noop:2.1.0"
 }

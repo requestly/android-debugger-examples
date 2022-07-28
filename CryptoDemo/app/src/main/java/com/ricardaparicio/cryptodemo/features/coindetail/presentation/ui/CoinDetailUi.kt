@@ -129,8 +129,11 @@ private fun CoinInfo(
     uiState: CoinDetailUiState,
 ) {
     RequestlyEvent.send(
-        "Coin Info is opened",
-        mapOf("coin" to "info")
+        "Coin Info Shown",
+        mapOf(
+            "name" to uiState.coinSummary.name,
+            "id" to uiState.coinSummary.id
+        )
     )
     Column(
         modifier = Modifier
