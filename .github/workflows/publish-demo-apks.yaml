@@ -11,9 +11,9 @@ jobs:
       - name: Setup JDK
         uses: actions/setup-java@v1
         with:
-          java-version: 1.8
+          java-version: 11
       # CryptoDemo
-      - name: Build APK
+      - name: Build CryptoDemo APK
         working-directory: ./CryptoDemo
         run: bash ./gradlew assembleDebug --stacktrace
       - name: Renaming Apk
@@ -24,7 +24,7 @@ jobs:
         with:
           path: ./CryptoDemo/app/build/outputs/apk/debug/cryptodemo-debug.apk
       # Pokedex
-      - name: Build APK
+      - name: Build Pokedex APK
         working-directory: ./Pokedex
         run: bash ./gradlew assembleDebug --stacktrace
       - name: Renaming Apk
