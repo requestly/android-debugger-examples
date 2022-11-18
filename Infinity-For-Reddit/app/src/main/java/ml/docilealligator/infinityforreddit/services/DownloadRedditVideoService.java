@@ -43,8 +43,8 @@ import java.util.Random;
 import javax.inject.Inject;
 import javax.inject.Named;
 
-import io.requestly.rqinterceptor.api.RQCollector;
-import io.requestly.rqinterceptor.api.RQInterceptor;
+import io.requestly.android.okhttp.api.RQCollector;
+import io.requestly.android.okhttp.api.RQInterceptor;
 import ml.docilealligator.infinityforreddit.DownloadProgressResponseBody;
 import ml.docilealligator.infinityforreddit.Infinity;
 import ml.docilealligator.infinityforreddit.R;
@@ -122,7 +122,7 @@ public class DownloadRedditVideoService extends Service {
                 }
             };
 
-            RQCollector collector = new RQCollector(getApplicationContext(), "UrTvL5B35D6vxIVscg8h");
+            RQCollector collector = new RQCollector(getApplicationContext());
             RQInterceptor rqInterceptor = new RQInterceptor.Builder(getApplicationContext())
                     .collector(collector)
                     .build();

@@ -1,11 +1,11 @@
 apply plugin: 'com.android.application'
 
 android {
-    compileSdkVersion 31
+    compileSdkVersion 33
     defaultConfig {
         applicationId "ml.docilealligator.infinityforreddit"
         minSdkVersion 21
-        targetSdkVersion 30
+        targetSdkVersion 33
         versionCode 95
         versionName "5.1.9-beta2"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
@@ -184,8 +184,10 @@ dependencies {
     implementation 'me.zhanghai.android.fastscroll:library:1.1.7'
 
     implementation 'com.otaliastudios:zoomlayout:1.9.0'
-    debugImplementation "io.requestly.rqinterceptor:library:1.1.5"
-    releaseImplementation "io.requestly.rqinterceptor:library-no-op:1.1.5"
+    debugImplementation "io.requestly:requestly-android:2.+"
+    releaseImplementation "io.requestly:requestly-android-noop:2.+"
+    debugImplementation "io.requestly:requestly-android-okhttp:2.+"
+    releaseImplementation "io.requestly:requestly-android-okhttp-noop:2.+"
 
 /**** Builds and flavors ****/
     // debugImplementation because LeakCanary should only run in debug builds.

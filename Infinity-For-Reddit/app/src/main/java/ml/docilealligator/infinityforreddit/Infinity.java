@@ -29,6 +29,7 @@ import org.greenrobot.eventbus.Subscribe;
 import javax.inject.Inject;
 import javax.inject.Named;
 
+import io.requestly.android.core.Requestly;
 import ml.docilealligator.infinityforreddit.activities.LockScreenActivity;
 import ml.docilealligator.infinityforreddit.broadcastreceivers.NetworkWifiStatusReceiver;
 import ml.docilealligator.infinityforreddit.broadcastreceivers.WallpaperChangeReceiver;
@@ -75,6 +76,9 @@ public class Infinity extends Application implements LifecycleObserver {
 
         mAppComponent = DaggerAppComponent.builder()
                 .appModule(new AppModule(this))
+                .build();
+
+        new Requestly.Builder(this, "bk9fvxFXM5HNwaMc6gkZ")
                 .build();
 
         mAppComponent.inject(this);

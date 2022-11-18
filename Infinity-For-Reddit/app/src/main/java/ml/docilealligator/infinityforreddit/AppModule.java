@@ -24,8 +24,8 @@ import im.ene.toro.exoplayer.Config;
 import im.ene.toro.exoplayer.ExoCreator;
 import im.ene.toro.exoplayer.MediaSourceBuilder;
 import im.ene.toro.exoplayer.ToroExo;
-import io.requestly.rqinterceptor.api.RQCollector;
-import io.requestly.rqinterceptor.api.RQInterceptor;
+import io.requestly.android.okhttp.api.RQCollector;
+import io.requestly.android.okhttp.api.RQInterceptor;
 import ml.docilealligator.infinityforreddit.customtheme.CustomThemeWrapper;
 import ml.docilealligator.infinityforreddit.customviews.LoopAvailableExoCreator;
 import ml.docilealligator.infinityforreddit.utils.APIUtils;
@@ -196,7 +196,7 @@ class AppModule {
     OkHttpClient provideOkHttpClient(@Named("no_oauth") Retrofit retrofit, RedditDataRoomDatabase accountRoomDatabase,
                                      @Named("current_account") SharedPreferences currentAccountSharedPreferences) {
         Context appContext = Infinity.getContext();
-        RQCollector collector = new RQCollector(appContext, "bk9fvxFXM5HNwaMc6gkZ");
+        RQCollector collector = new RQCollector(appContext);
         RQInterceptor rqInterceptor = new RQInterceptor.Builder(appContext)
                 .collector(collector)
                 .build();
@@ -216,7 +216,7 @@ class AppModule {
     @Singleton
     OkHttpClient provideRPANOkHttpClient() {
         Context appContext = Infinity.getContext();
-        RQCollector collector = new RQCollector(appContext, "bk9fvxFXM5HNwaMc6gkZ");
+        RQCollector collector = new RQCollector(appContext);
         RQInterceptor rqInterceptor = new RQInterceptor.Builder(appContext)
                 .collector(collector)
                 .build();
@@ -234,7 +234,7 @@ class AppModule {
     @Singleton
     OkHttpClient provideRqOkHttpClient() {
         Context appContext = Infinity.getContext();
-        RQCollector collector = new RQCollector(appContext, "bk9fvxFXM5HNwaMc6gkZ");
+        RQCollector collector = new RQCollector(appContext);
         RQInterceptor rqInterceptor = new RQInterceptor.Builder(appContext)
                 .collector(collector)
                 .build();
