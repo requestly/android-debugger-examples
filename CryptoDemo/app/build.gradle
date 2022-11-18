@@ -5,12 +5,12 @@ plugins {
     id 'dagger.hilt.android.plugin'
 }
 android {
-    compileSdk 31
+    compileSdk 33
 
     defaultConfig {
         applicationId "com.ricardaparicio.cryptodemo"
         minSdk 24
-        targetSdk 31
+        targetSdk 33
         versionCode 1
         versionName "1.0"
 
@@ -110,8 +110,8 @@ dependencies {
     androidTestImplementation "androidx.compose.ui:ui-test-junit4:$compose_version"
     debugImplementation "androidx.compose.ui:ui-tooling:$compose_version"
 
-    debugImplementation "io.requestly:requestly-android:2.1.0"
-    releaseImplementation "io.requestly:requestly-android-noop:2.1.0"
-    debugImplementation "io.requestly:requestly-android-okhttp:2.1.0"
-    releaseImplementation "io.requestly:requestly-android-okhttp-noop:2.1.0"
+    debugImplementation "io.requestly:requestly-android:2.+"
+    releaseImplementation "io.requestly:requestly-android-noop:2.+"
+    debugImplementation "io.requestly:requestly-android-okhttp:2.+"
+    releaseImplementation "io.requestly:requestly-android-okhttp-noop:2.+"
 }

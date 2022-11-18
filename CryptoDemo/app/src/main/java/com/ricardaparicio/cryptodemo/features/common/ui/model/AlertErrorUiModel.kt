@@ -1,6 +1,6 @@
 package com.ricardaparicio.cryptodemo.features.common.ui.model
 
-import android.support.annotation.StringRes
+import androidx.annotation.StringRes
 import com.ricardaparicio.cryptodemo.R
 import com.ricardaparicio.cryptodemo.core.Failure
 import com.ricardaparicio.cryptodemo.core.LocalError
