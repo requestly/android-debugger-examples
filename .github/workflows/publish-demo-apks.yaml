@@ -13,7 +13,8 @@ jobs:
         with:
           java-version: 1.8
       # CryptoDemo
-      - run: cd CryptoDemo/
+      - run: ls
+      - run: cd cryptodemo/
       - run: ls
       - name: Build APK
         run: bash ./gradlew assembleDebug --stacktrace
