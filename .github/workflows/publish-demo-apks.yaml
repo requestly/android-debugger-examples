@@ -43,6 +43,19 @@ jobs:
           name: demo-apks
           path: ./Pokedex/app/build/outputs/apk/debug/pokedex-debug.apk
 
+      # Infinity Reddit
+      - name: Build Infinity APK
+        working-directory: ./Infinity-For-Reddit
+        run: bash ./gradlew assembleDebug --stacktrace
+      - name: Renaming Apk
+        working-directory: ./Infinity-For-Reddit
+        run: mv app/build/outputs/apk/debug/app-debug.apk app/build/outputs/apk/debug/infinity-reddit-debug.apk
+      - name: Upload APK
+        uses: actions/upload-artifact@v1
+        with:
+          name: demo-apks
+          path: ./Infinity-For-Reddit/app/build/outputs/apk/debug/infinity-reddit-debug.apk
+
   release:
     name: Release APKS
     needs: create
@@ -60,3 +73,4 @@ jobs:
           files: |
             demo-apks/cryptodemo-debug.apk
             demo-apks/pokedex-debug.apk
+            demo-apks/infinity-reddit-debug.apk
