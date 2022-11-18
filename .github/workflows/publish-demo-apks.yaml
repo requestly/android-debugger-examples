@@ -1,5 +1,11 @@
 name: Publish Demo Apks
-on: workflow_dispatch
+on:
+  workflow_dispatch:
+    inputs:
+      version:
+        description: 'requestly-android-sdk version'
+        required: true 
+        type: string
 
 jobs:
   create:
@@ -36,3 +42,21 @@ jobs:
         with:
           name: demo-apks
           path: ./Pokedex/app/build/outputs/apk/debug/pokedex-debug.apk
+
+  release:
+    name: Release APKS
+    needs: create
+    runs-on: ubuntu-latest
+    steps:
+      - name: Download APK from build
+        uses: actions/download-artifact@v1
+        with:
+          name: demo-apks
+      - name: Release
+        uses: softprops/action-gh-release@v1
+        with:
+          draft: true
+          name: ${{ inputs.version }}
+          files: |
+            demo-apks/cryptodemo-debug.apk
+            demo-apks/pokedex-debug.apk
