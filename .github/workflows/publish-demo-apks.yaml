@@ -20,10 +20,9 @@ jobs:
         working-directory: ./CryptoDemo
         run: mv app/build/outputs/apk/debug/app-debug.apk app/build/outputs/apk/debug/cryptodemo-debug.apk
       - name: Upload APK
-        working-directory: ./CryptoDemo
         uses: actions/upload-artifact@v1
         with:
-          path: app/build/outputs/apk/debug/cryptodemo-debug.apk
+          path: ./CryptoDemo/app/build/outputs/apk/debug/cryptodemo-debug.apk
       # Pokedex
       - name: Build APK
         working-directory: ./Pokedex
@@ -32,7 +31,6 @@ jobs:
         working-directory: ./Pokedex
         run: mv app/build/outputs/apk/debug/app-debug.apk app/build/outputs/apk/debug/pokedex-debug.apk
       - name: Upload APK
-        working-directory: ./Pokedex
         uses: actions/upload-artifact@v1
         with:
-          path: app/build/outputs/apk/debug/pokedex-debug.apk
+          path: ./Pokedex/app/build/outputs/apk/debug/pokedex-debug.apk
