@@ -1,0 +1,36 @@
+name: Publish Demo Apks
+on: workflow_dispatch
+
+jobs:
+  create:
+    name: Create Apks
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v1
+      - name: Setup JDK
+        uses: actions/setup-java@v1
+        with:
+          java-version: 1.8
+      # CryptoDemo
+      - run: cd CryptoDemo
+      - name: Build APK
+        run: bash ./gradlew assembleDebug --stacktrace
+      - name: Renaming Apk
+        run: mv app/build/outputs/apk/debug/app-debug.apk app/build/outputs/apk/debug/cryptodemo-debug.apk
+      - name: Upload APK
+        uses: actions/upload-artifact@v1
+        with:
+          path: app/build/outputs/apk/debug/cryptodemo-debug.apk
+      - run: cd ../
+      # Pokedex
+      - run: cd Pokedex
+      - name: Build APK
+        run: bash ./gradlew assembleDebug --stacktrace
+      - name: Renaming Apk
+        run: mv app/build/outputs/apk/debug/app-debug.apk app/build/outputs/apk/debug/pokedex-debug.apk
+      - name: Upload APK
+        uses: actions/upload-artifact@v1
+        with:
+          path: app/build/outputs/apk/debug/pokedex-debug.apk
+      - run: cd ../
