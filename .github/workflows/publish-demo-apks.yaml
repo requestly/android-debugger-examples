@@ -13,26 +13,26 @@ jobs:
         with:
           java-version: 1.8
       # CryptoDemo
-      - run: ls
-      - run: cd cryptodemo/
-      - run: ls
       - name: Build APK
+        working-directory: ./CryptoDemo
         run: bash ./gradlew assembleDebug --stacktrace
       - name: Renaming Apk
+        working-directory: ./CryptoDemo
         run: mv app/build/outputs/apk/debug/app-debug.apk app/build/outputs/apk/debug/cryptodemo-debug.apk
       - name: Upload APK
+        working-directory: ./CryptoDemo
         uses: actions/upload-artifact@v1
         with:
           path: app/build/outputs/apk/debug/cryptodemo-debug.apk
-      - run: cd ../
       # Pokedex
-      - run: cd Pokedex
       - name: Build APK
+        working-directory: ./Pokedex
         run: bash ./gradlew assembleDebug --stacktrace
       - name: Renaming Apk
+        working-directory: ./Pokedex
         run: mv app/build/outputs/apk/debug/app-debug.apk app/build/outputs/apk/debug/pokedex-debug.apk
       - name: Upload APK
+        working-directory: ./Pokedex
         uses: actions/upload-artifact@v1
         with:
           path: app/build/outputs/apk/debug/pokedex-debug.apk
-      - run: cd ../
